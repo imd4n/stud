@@ -998,26 +998,65 @@ void drawHUD(HDC context, int health, int maxHealth, int level,
   TextOut(context, 10, 10, buf, strlen(buf));
 }
 
+// --------------------- ОКНО ИГРЫ ---------------------
+
+// Своё окно вместо консольного: рисуем в него напрямую, поэтому игра
+// одинаково работает из cmd, Windows Terminal и встроенного терминала Zed.
+LRESULT CALLBACK GameWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
+  switch (msg) {
+  case WM_CLOSE:
+    gameRunning = false;
+    return 0;
+  case WM_DESTROY:
+    gameRunning = false;
+    return 0;
+  default:
+    return DefWindowProc(hwnd, msg, wParam, lParam);
+  }
+}
+
 // --------------------- ГЛАВНАЯ ФУНКЦИЯ ---------------------
 
 int main() {
   srand(static_cast<unsigned int>(time(nullptr)));
 
-  HWND hwnd = GetConsoleWindow();
-  if (hwnd == NULL) {
-    std::cout << "Console Window NOT FOUND\n";
+  HINSTANCE hInst = GetModuleHandle(nullptr);
+  const char *const className = "ExOOPGameWindow";
+
+  WNDCLASSEXA wc = {};
+  wc.cbSize = sizeof(wc);
+  wc.style = CS_HREDRAW | CS_VREDRAW;
+  wc.lpfnWndProc = GameWndProc;
+  wc.hInstance = hInst;
+  wc.hCursor = LoadCursor(nullptr, IDC_ARROW);
+  wc.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
+  wc.lpszClassName = className;
+  if (!RegisterClassExA(&wc)) {
+    std::cout << "RegisterClassEx FAILED\n";
     return 1;
   }
 
-  HDC hdcScreen = GetWindowDC(hwnd);
+  // Подгоняем размер окна так, чтобы клиентская область была windowW x windowH.
+  RECT winRect = {0, 0, windowW, windowH};
+  AdjustWindowRectEx(&winRect, WS_OVERLAPPEDWINDOW, FALSE, 0);
+  HWND hwnd = CreateWindowExA(0, className, "ExOOP - Plane Game",
+                              WS_OVERLAPPEDWINDOW, windowX, windowY,
+                              winRect.right - winRect.left,
+                              winRect.bottom - winRect.top,
+                              nullptr, nullptr, hInst, nullptr);
+  if (hwnd == NULL) {
+    std::cout << "CreateWindowEx FAILED\n";
+    return 1;
+  }
+  ShowWindow(hwnd, SW_SHOW);
+  UpdateWindow(hwnd);
+
+  HDC hdcScreen = GetDC(hwnd);
   if (hdcScreen == 0) {
     std::cout << "HDC NOT FOUND\n";
     return 2;
   }
   hdc = hdcScreen;
-
-  SetWindowPos(hwnd, NULL, windowX, windowY, windowW, windowH, 0);
-  Sleep(100);
 
   // --------------------- ДВОЙНАЯ БУФЕРИЗАЦИЯ ---------------------
   int bufW = windowW;
@@ -1071,7 +1110,20 @@ int main() {
   magicActive = false;
 
   // --------------------- ГЛАВНЫЙ ЦИКЛ ---------------------
+  MSG msg;
   while (gameRunning) {
+    // Обрабатываем сообщения окна: окно можно двигать, сворачивать и закрывать.
+    while (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE)) {
+      if (msg.message == WM_QUIT) {
+        gameRunning = false;
+        break;
+      }
+      TranslateMessage(&msg);
+      DispatchMessage(&msg);
+    }
+    if (!gameRunning)
+      break;
+
     auto now = std::chrono::steady_clock::now();
     auto elapsed =
         std::chrono::duration_cast<std::chrono::milliseconds>(now - lastTime);
@@ -1251,5 +1303,7 @@ int main() {
   DeleteDC(hdcFrame);
 
   ReleaseDC(hwnd, hdcScreen);
+  DestroyWindow(hwnd);
+  UnregisterClassA(className, hInst);
   return 0;
 }
