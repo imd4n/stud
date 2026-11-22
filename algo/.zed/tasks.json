@@ -1,0 +1,26 @@
+[
+  {
+    "label": "Compile & Run (C)",
+    "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"$ZED_WORKTREE_ROOT/.zed/run-c.ps1\" -Source \"$ZED_FILE\"",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "save": "all",
+    "reveal": "always",
+    "hide": "never",
+    "use_new_terminal": true,
+    "allow_concurrent_runs": true,
+    "show_summary": true,
+    "show_command": false
+  },
+  {
+    "label": "Compile only (C)",
+    "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"$ZED_WORKTREE_ROOT/.zed/run-c.ps1\" -Source \"$ZED_FILE\" -CompileOnly",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "save": "all",
+    "reveal": "always",
+    "hide": "never",
+    "use_new_terminal": true,
+    "allow_concurrent_runs": true,
+    "show_summary": true,
+    "show_command": false
+  }
+]

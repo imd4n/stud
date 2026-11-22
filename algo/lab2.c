@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <locale.h>
 
 // Общие счетчики: counter1 — сравнения, counter2 — пересылки.
 // Они обнуляются перед запуском каждой сортировки.
@@ -262,6 +263,8 @@ int isSorted(int* a, int n)
 
 int main(void)
 {
+    setlocale(LC_ALL, ".UTF-8"); // меняем локаль на читаемую
+
     int sizes[] = {15, 500, 1000, 10000, 50000, 100000};
     const char* types[] = {"Случайный", "Возрастающий", "Убывающий"};
     const char* names[] = {"Выбором", "Вставками", "Слиянием",
