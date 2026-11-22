@@ -1,0 +1,56 @@
+[
+{
+  "directory": "/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/build",
+  "command": "/opt/homebrew/bin/x86_64-w64-mingw32-g++ -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/ExOOP\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../mBaseHierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../mDrawingHierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../m1Hierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../m2Hierarhy\" -g -static -o CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Лаба_4/main.cpp.obj -c \"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/main.cpp\"",
+  "file": "/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/main.cpp",
+  "output": "CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Лаба_4/main.cpp.obj"
+},
+{
+  "directory": "/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/build",
+  "command": "/opt/homebrew/bin/x86_64-w64-mingw32-g++ -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/ExOOP\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../mBaseHierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../mDrawingHierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../m1Hierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../m2Hierarhy\" -g -static -o CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Лаба_4/mBaseHierarhy/TLocation.cpp.obj -c \"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/mBaseHierarhy/TLocation.cpp\"",
+  "file": "/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/mBaseHierarhy/TLocation.cpp",
+  "output": "CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Лаба_4/mBaseHierarhy/TLocation.cpp.obj"
+},
+{
+  "directory": "/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/build",
+  "command": "/opt/homebrew/bin/x86_64-w64-mingw32-g++ -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/ExOOP\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../mBaseHierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../mDrawingHierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../m1Hierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../m2Hierarhy\" -g -static -o CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Лаба_4/mBaseHierarhy/TPoint.cpp.obj -c \"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/mBaseHierarhy/TPoint.cpp\"",
+  "file": "/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/mBaseHierarhy/TPoint.cpp",
+  "output": "CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Лаба_4/mBaseHierarhy/TPoint.cpp.obj"
+},
+{
+  "directory": "/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/build",
+  "command": "/opt/homebrew/bin/x86_64-w64-mingw32-g++ -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/ExOOP\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../mBaseHierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../mDrawingHierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../m1Hierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../m2Hierarhy\" -g -static -o CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Лаба_4/mPlaneHierarhy/TPlane.cpp.obj -c \"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/mPlaneHierarhy/TPlane.cpp\"",
+  "file": "/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/mPlaneHierarhy/TPlane.cpp",
+  "output": "CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Лаба_4/mPlaneHierarhy/TPlane.cpp.obj"
+},
+{
+  "directory": "/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/build",
+  "command": "/opt/homebrew/bin/x86_64-w64-mingw32-g++ -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/ExOOP\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../mBaseHierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../mDrawingHierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../m1Hierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../m2Hierarhy\" -g -static -o CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Лаба_4/mPlaneHierarhy/TMagicPlane.cpp.obj -c \"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/mPlaneHierarhy/TMagicPlane.cpp\"",
+  "file": "/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/mPlaneHierarhy/TMagicPlane.cpp",
+  "output": "CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Лаба_4/mPlaneHierarhy/TMagicPlane.cpp.obj"
+},
+{
+  "directory": "/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/build",
+  "command": "/opt/homebrew/bin/x86_64-w64-mingw32-g++ -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/ExOOP\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../mBaseHierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../mDrawingHierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../m1Hierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../m2Hierarhy\" -g -static -o CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Лаба_4/mPlaneHierarhy/TBrokenPlane.cpp.obj -c \"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/mPlaneHierarhy/TBrokenPlane.cpp\"",
+  "file": "/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/mPlaneHierarhy/TBrokenPlane.cpp",
+  "output": "CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Лаба_4/mPlaneHierarhy/TBrokenPlane.cpp.obj"
+},
+{
+  "directory": "/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/build",
+  "command": "/opt/homebrew/bin/x86_64-w64-mingw32-g++ -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/ExOOP\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../mBaseHierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../mDrawingHierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../m1Hierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../m2Hierarhy\" -g -static -o CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Лаба_4/mPlaneHierarhy/TRepairedPlane.cpp.obj -c \"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/mPlaneHierarhy/TRepairedPlane.cpp\"",
+  "file": "/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/mPlaneHierarhy/TRepairedPlane.cpp",
+  "output": "CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Лаба_4/mPlaneHierarhy/TRepairedPlane.cpp.obj"
+},
+{
+  "directory": "/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/build",
+  "command": "/opt/homebrew/bin/x86_64-w64-mingw32-g++ -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/ExOOP\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../mBaseHierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../mDrawingHierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../m1Hierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../m2Hierarhy\" -g -static -o CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Лаба_4/mTowerHierarhy/TTower.cpp.obj -c \"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/mTowerHierarhy/TTower.cpp\"",
+  "file": "/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/mTowerHierarhy/TTower.cpp",
+  "output": "CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Лаба_4/mTowerHierarhy/TTower.cpp.obj"
+},
+{
+  "directory": "/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/build",
+  "command": "/opt/homebrew/bin/x86_64-w64-mingw32-g++ -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/ExOOP\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../mBaseHierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../mDrawingHierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../m1Hierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/cmake/../m2Hierarhy\" -g -static -o CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Лаба_4/mTowerHierarhy/TMagicTower.cpp.obj -c \"/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/mTowerHierarhy/TMagicTower.cpp\"",
+  "file": "/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/mTowerHierarhy/TMagicTower.cpp",
+  "output": "CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Лаба_4/mTowerHierarhy/TMagicTower.cpp.obj"
+}
+]

@@ -1,0 +1,3 @@
+/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ copy 2/build/CMakeFiles/ExOOP.dir
+/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ copy 2/build/CMakeFiles/edit_cache.dir
+/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ copy 2/build/CMakeFiles/rebuild_cache.dir

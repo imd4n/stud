@@ -1,0 +1,32 @@
+[
+{
+  "directory": "/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/build",
+  "command": "/opt/homebrew/bin/x86_64-w64-mingw32-g++ -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/cmake/ExOOP\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/cmake/../mBaseHierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/cmake/../mDrawingHierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/cmake/../m1Hierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/cmake/../m2Hierarhy\" -g -static -o CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ/main.cpp.obj -c \"/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/main.cpp\"",
+  "file": "/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/main.cpp",
+  "output": "CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ/main.cpp.obj"
+},
+{
+  "directory": "/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/build",
+  "command": "/opt/homebrew/bin/x86_64-w64-mingw32-g++ -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/cmake/ExOOP\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/cmake/../mBaseHierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/cmake/../mDrawingHierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/cmake/../m1Hierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/cmake/../m2Hierarhy\" -g -static -o CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ/mBaseHierarhy/TLocation.cpp.obj -c \"/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/mBaseHierarhy/TLocation.cpp\"",
+  "file": "/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/mBaseHierarhy/TLocation.cpp",
+  "output": "CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ/mBaseHierarhy/TLocation.cpp.obj"
+},
+{
+  "directory": "/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/build",
+  "command": "/opt/homebrew/bin/x86_64-w64-mingw32-g++ -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/cmake/ExOOP\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/cmake/../mBaseHierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/cmake/../mDrawingHierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/cmake/../m1Hierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/cmake/../m2Hierarhy\" -g -static -o CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ/mBaseHierarhy/TPoint.cpp.obj -c \"/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/mBaseHierarhy/TPoint.cpp\"",
+  "file": "/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/mBaseHierarhy/TPoint.cpp",
+  "output": "CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ/mBaseHierarhy/TPoint.cpp.obj"
+},
+{
+  "directory": "/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/build",
+  "command": "/opt/homebrew/bin/x86_64-w64-mingw32-g++ -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/cmake/ExOOP\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/cmake/../mBaseHierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/cmake/../mDrawingHierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/cmake/../m1Hierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/cmake/../m2Hierarhy\" -g -static -o CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ/mDrawingHierarhy/TLine.cpp.obj -c \"/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/mDrawingHierarhy/TLine.cpp\"",
+  "file": "/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/mDrawingHierarhy/TLine.cpp",
+  "output": "CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ/mDrawingHierarhy/TLine.cpp.obj"
+},
+{
+  "directory": "/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/build",
+  "command": "/opt/homebrew/bin/x86_64-w64-mingw32-g++ -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/cmake/ExOOP\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/cmake/../mBaseHierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/cmake/../mDrawingHierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/cmake/../m1Hierarhy\" -I\"/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/cmake/../m2Hierarhy\" -g -static -o CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ/mPlaneHierarhy/TPlane.cpp.obj -c \"/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/mPlaneHierarhy/TPlane.cpp\"",
+  "file": "/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/mPlaneHierarhy/TPlane.cpp",
+  "output": "CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ/mPlaneHierarhy/TPlane.cpp.obj"
+}
+]

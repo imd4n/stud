@@ -1,0 +1,10 @@
+{
+  "cmake.configureArgs": [
+    "-DCMAKE_TOOLCHAIN_FILE=${workspaceFolder}/cmake/toolchain.cmake"
+  ],
+  "cmake.configureSettings": {
+    "CMAKE_TOOLCHAIN_FILE": "${workspaceFolder}/cmake/toolchain.cmake"
+  },
+  "cmake.cmakePath": "/opt/homebrew/bin/cmake",
+  "cmake.sourceDirectory": "/Users/nikitak/Documents/Programming/Программирование 3 сем/Игра/cmake"
+}

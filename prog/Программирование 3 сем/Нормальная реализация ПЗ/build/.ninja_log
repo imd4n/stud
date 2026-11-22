@@ -1,0 +1,14 @@
+# ninja log v7
+11	386	1760903439193142128	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ/mBaseHierarhy/TLocation.cpp.obj	84d4f9df24406a67
+5	1129	1760942205162192453	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ/mBaseHierarhy/TPoint.cpp.obj	d0d5a87ae3600fbb
+4	1254	1760942205161537815	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ/main.cpp.obj	ce58b4e2fa9715e8
+1254	1602	1760942206411972592	/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/output/ExOOP.exe	ac82bb9cd2cf3c9c
+2	647	1761344083470325672	build.ninja	e4ddb32153dc7088
+2	647	1761344083469175756	/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/build/cmake_install.cmake	e4ddb32153dc7088
+4	1393	1759737072817428914	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ/mCloudHierarhy/TCloud.cpp.obj	44a56ed3a101e5ad
+5	1129	1760942205162325156	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ/mPlaneHierarhy/TPlane.cpp.obj	4ff432d56c5ddb97
+27	1876	1760940835483093949	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ/mTowerHierarhy/TTower.cpp.obj	31c0a89fa602b83c
+4	1376	1759737072817180754	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ/mBaseHierarhy/TCollision.cpp.obj	acbb64a326bf50a9
+3	1308	1760941055729579283	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ/mDrawingHierarhy/TLine.cpp.obj	896d811ffe7cf128
+5	1480	1760911919246678785	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ/mPlaneHierarhy/TMagicPlane.cpp.obj	760e649c38166545
+6	1491	1760911919246799408	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ/mPlaneHierarhy/TBrokenPlane.cpp.obj	a5deaf068ef566ba

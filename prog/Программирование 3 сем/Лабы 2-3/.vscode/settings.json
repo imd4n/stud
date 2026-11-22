@@ -1,0 +1,9 @@
+{
+  "cmake.configureArgs": [
+    "-DCMAKE_TOOLCHAIN_FILE=${workspaceFolder}/cmake/toolchain.cmake"
+  ],
+  "cmake.configureSettings": {
+    "CMAKE_TOOLCHAIN_FILE": "${workspaceFolder}/cmake/toolchain.cmake"
+  },
+  "cmake.sourceDirectory": "/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ copy 2/cmake"
+}

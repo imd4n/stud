@@ -1,0 +1,11 @@
+# ninja log v7
+2	560	1765779987079753566	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Лаба_4/mBaseHierarhy/TLocation.cpp.obj	2af096a299c1e023
+2	2884	1765779987079996640	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Лаба_4/mBaseHierarhy/TPoint.cpp.obj	280116b40f04f76e
+2	2893	1765779987080478623	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Лаба_4/mPlaneHierarhy/TMagicPlane.cpp.obj	87deb00b3838458a
+6	1526	1765780036401399768	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Лаба_4/mPlaneHierarhy/TPlane.cpp.obj	7012b10fc8ecb3c4
+3	2936	1765779987080765612	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Лаба_4/mPlaneHierarhy/TBrokenPlane.cpp.obj	805ac932873b25b
+3	2950	1765779987081049852	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Лаба_4/mPlaneHierarhy/TRepairedPlane.cpp.obj	e2c6a7970fc96e77
+3	3028	1765779987081470378	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Лаба_4/mTowerHierarhy/TTower.cpp.obj	fc3f791e15661f62
+5	1706	1765780004343900687	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Лаба_4/mTowerHierarhy/TMagicTower.cpp.obj	df8eefa4e929a5e9
+5	1799	1765780426745992816	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Лаба_4/main.cpp.obj	bb0f96303ed14443
+1799	2306	1765780428540281346	/Users/nikitak/Documents/Programming/Программирование 3 сем/Лаба 4/output/ExOOP.exe	dbd5d90590986777

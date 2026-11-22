@@ -1,0 +1,85 @@
+# ninja log v7
+10	1828	1765745512649744170	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mBaseHierarhy/TLocation.cpp.obj	7ee1398f87d73022
+11	10372	1765745512650057247	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mBaseHierarhy/TPoint.cpp.obj	220c0e321739a200
+33	4875	1766179626287419925	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mPlaneHierarhy/TRepairedPlane.cpp.obj	ae407803204debef
+5	1915	1766182430653549273	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mPlaneHierarhy/TPlane.cpp.obj	bb74c68e09da8673
+13	4873	1766179626267387158	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mPlaneHierarhy/TMagicPlane.cpp.obj	eb193cd977b0468b
+8	1776	1766181333270962788	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mTowerHierarhy/TTower.cpp.obj	7d24dc6ead0f160f
+14	4874	1766179626268924794	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mPlaneHierarhy/TBrokenPlane.cpp.obj	e87e25afc4e2a911
+10	4382	1764580508133535434	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mDrawingHierarhy/TLine.cpp.obj	8493f58321fbff04
+4	1784	1766181937039526630	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mTowerHierarhy/TMagicTower.cpp.obj	80d9022681615e32
+9	3131	1766182894450542178	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/main.cpp.obj	6df77640d7726d00
+3131	3946	1766182897572641679	/Users/nikitak/Documents/Programming/Программирование 3 сем/Игра/output/ExOOP.exe	2488b3b180e6f0c2
+6	1573	1765788586261276031	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mObjects/TRepairZone.cpp.obj	d24ee2fd0ae6c367
+4	1676	1766181221257853389	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mObjects/TRockets.cpp.obj	6bfeacf0e3cdecc4
+12	21893	1784715518505313479	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mObjects/TRepairZone.cpp.obj	d24ee2fd0ae6c367
+12	22643	1784715518505473101	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mObjects/TRocketsFill.cpp.obj	f01dad797d9cc7d6
+11	23928	1784715518504629991	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mPlaneHierarhy/TPlane.cpp.obj	bb74c68e09da8673
+13	24481	1784715518505647182	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mTowerHierarhy/TTower.cpp.obj	7d24dc6ead0f160f
+12	25556	1784715518505143566	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mPlaneHierarhy/TRepairedPlane.cpp.obj	ae407803204debef
+13	26020	1784715518505887386	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mTowerHierarhy/TMagicTower.cpp.obj	80d9022681615e32
+12	26483	1784715518504976527	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mPlaneHierarhy/TBrokenPlane.cpp.obj	e87e25afc4e2a911
+12	26621	1784715518504810613	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mPlaneHierarhy/TMagicPlane.cpp.obj	eb193cd977b0468b
+11	27289	1784715518503783464	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/main.cpp.obj	6df77640d7726d00
+27290	28981	1784715545782709107	/Users/nikitak/Documents/Programming/Программирование 3 сем/Игра/output/ExOOP.exe	4f31590474c29d9e
+4	2421	1784716055412680262	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mPlaneHierarhy/TMagicPlane.cpp.obj	eb193cd977b0468b
+5	2422	1784716055414283525	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mPlaneHierarhy/TBrokenPlane.cpp.obj	e87e25afc4e2a911
+6	2422	1784716055414800683	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mPlaneHierarhy/TRepairedPlane.cpp.obj	ae407803204debef
+2422	3063	1784716057831086338	/Users/nikitak/Documents/Programming/Программирование 3 сем/Игра/output/ExOOP.exe	4f31590474c29d9e
+6	2304	1784716554190234474	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/main.cpp.obj	6df77640d7726d00
+2305	3335	1784716556488927660	/Users/nikitak/Documents/Programming/Программирование 3 сем/Игра/output/ExOOP.exe	4f31590474c29d9e
+4	2162	1784716738564571746	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/main.cpp.obj	6df77640d7726d00
+2162	2739	1784716740722382239	/Users/nikitak/Documents/Programming/Программирование 3 сем/Игра/output/ExOOP.exe	4f31590474c29d9e
+4	1995	1784717073901702922	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/main.cpp.obj	6df77640d7726d00
+1996	2520	1784717075892939583	/Users/nikitak/Documents/Programming/Программирование 3 сем/Игра/output/ExOOP.exe	4f31590474c29d9e
+5	2023	1784717394304884530	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/main.cpp.obj	6df77640d7726d00
+2025	3065	1784717396325235771	/Users/nikitak/Documents/Programming/Программирование 3 сем/Игра/output/ExOOP.exe	4f31590474c29d9e
+5	2010	1784717614807979671	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/main.cpp.obj	6df77640d7726d00
+2010	2539	1784717616812813723	/Users/nikitak/Documents/Programming/Программирование 3 сем/Игра/output/ExOOP.exe	4f31590474c29d9e
+5	2382	1784717868731488029	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/main.cpp.obj	6df77640d7726d00
+2382	3057	1784717871108667277	/Users/nikitak/Documents/Programming/Программирование 3 сем/Игра/output/ExOOP.exe	4f31590474c29d9e
+5	2053	1784718785888298778	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mPlaneHierarhy/TMagicPlane.cpp.obj	eb193cd977b0468b
+5	1973	1784718863534067454	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/main.cpp.obj	6df77640d7726d00
+1973	2504	1784718865502633470	/Users/nikitak/Documents/Programming/Программирование 3 сем/Игра/output/ExOOP.exe	4f31590474c29d9e
+4	1700	1784719161380185250	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mPlaneHierarhy/TPlane.cpp.obj	bb74c68e09da8673
+1700	2235	1784719163075832449	/Users/nikitak/Documents/Programming/Программирование 3 сем/Игра/output/ExOOP.exe	4f31590474c29d9e
+21	5391	1784719431641206861	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mPlaneHierarhy/TMagicPlane.cpp.obj	eb193cd977b0468b
+29	5392	1784719431649071020	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mPlaneHierarhy/TRepairedPlane.cpp.obj	ae407803204debef
+26	5393	1784719431646085420	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mPlaneHierarhy/TBrokenPlane.cpp.obj	e87e25afc4e2a911
+12	5766	1784719431631605824	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/main.cpp.obj	6df77640d7726d00
+15	9020	1784719462374313732	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mPlaneHierarhy/TMagicPlane.cpp.obj	eb193cd977b0468b
+21	9022	1784719462381172807	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mPlaneHierarhy/TRepairedPlane.cpp.obj	ae407803204debef
+20	9055	1784719462380030654	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mPlaneHierarhy/TBrokenPlane.cpp.obj	e87e25afc4e2a911
+14	9082	1784719462373916488	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mPlaneHierarhy/TPlane.cpp.obj	bb74c68e09da8673
+12	9565	1784719462372078961	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/main.cpp.obj	6df77640d7726d00
+4	640	1784719472391255208	/Users/nikitak/Documents/Programming/Программирование 3 сем/Игра/output/ExOOP.exe	4f31590474c29d9e
+5	1810	1784719690979287214	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mPlaneHierarhy/TPlane.cpp.obj	bb74c68e09da8673
+1810	2351	1784719692784480813	/Users/nikitak/Documents/Programming/Программирование 3 сем/Игра/output/ExOOP.exe	4f31590474c29d9e
+5	1733	1784719862652940057	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mPlaneHierarhy/TPlane.cpp.obj	bb74c68e09da8673
+1733	2263	1784719864381228751	/Users/nikitak/Documents/Programming/Программирование 3 сем/Игра/output/ExOOP.exe	4f31590474c29d9e
+7	5319	1784720049882624432	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mPlaneHierarhy/TMagicPlane.cpp.obj	eb193cd977b0468b
+7	5321	1784720049882977838	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mPlaneHierarhy/TRepairedPlane.cpp.obj	ae407803204debef
+7	5329	1784720049882804427	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mPlaneHierarhy/TBrokenPlane.cpp.obj	e87e25afc4e2a911
+7	5332	1784720049882421188	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mPlaneHierarhy/TPlane.cpp.obj	bb74c68e09da8673
+5	6025	1784720049881065854	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/main.cpp.obj	6df77640d7726d00
+6025	6958	1784720055900446252	/Users/nikitak/Documents/Programming/Программирование 3 сем/Игра/output/ExOOP.exe	4f31590474c29d9e
+5	2037	1784720634353101075	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/main.cpp.obj	6df77640d7726d00
+2037	2571	1784720636385166886	/Users/nikitak/Documents/Programming/Программирование 3 сем/Игра/output/ExOOP.exe	4f31590474c29d9e
+5	1768	1784720693665819966	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mObjects/TRocketsFill.cpp.obj	f01dad797d9cc7d6
+4	1768	1784720693664877661	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mObjects/TRepairZone.cpp.obj	d24ee2fd0ae6c367
+1768	2350	1784720695428616877	/Users/nikitak/Documents/Programming/Программирование 3 сем/Игра/output/ExOOP.exe	4f31590474c29d9e
+5	2061	1784720810616917647	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/main.cpp.obj	6df77640d7726d00
+2061	2582	1784720812672949449	/Users/nikitak/Documents/Programming/Программирование 3 сем/Игра/output/ExOOP.exe	4f31590474c29d9e
+5	2279	1784721033945474365	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/main.cpp.obj	6df77640d7726d00
+2279	2880	1784721036219351648	/Users/nikitak/Documents/Programming/Программирование 3 сем/Игра/output/ExOOP.exe	4f31590474c29d9e
+26	7913	1784725030548195794	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/mTowerHierarhy/TTower.cpp.obj	7d24dc6ead0f160f
+25	8857	1784725030546799915	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/main.cpp.obj	6df77640d7726d00
+8857	9714	1784725039378642882	/Users/nikitak/Documents/Programming/Программирование 3 сем/Игра/output/ExOOP.exe	4f31590474c29d9e
+10	2063	1784725478412076360	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/main.cpp.obj	6df77640d7726d00
+2063	2597	1784725480465314812	/Users/nikitak/Documents/Programming/Программирование 3 сем/Игра/output/ExOOP.exe	4f31590474c29d9e
+5	10656	1784725620694064135	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/main.cpp.obj	6df77640d7726d00
+10659	11867	1784725631347583932	/Users/nikitak/Documents/Programming/Программирование 3 сем/Игра/output/ExOOP.exe	4f31590474c29d9e
+5	20151	1784726098413549004	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/main.cpp.obj	6df77640d7726d00
+20151	21113	1784726118559698239	/Users/nikitak/Documents/Programming/Программирование 3 сем/Игра/output/ExOOP.exe	4f31590474c29d9e
+19	2062	1784789716476589654	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Игра/main.cpp.obj	6df77640d7726d00
+2062	2600	1784789718519124798	/Users/nikitak/Documents/Programming/Программирование 3 сем/Игра/output/ExOOP.exe	4f31590474c29d9e

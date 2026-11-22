@@ -1,0 +1,12 @@
+# ninja log v7
+17	1270	1762869607499558303	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ_copy_2/mBaseHierarhy/TLocation.cpp.obj	d1c23ed4443e4141
+17	4132	1762869607499828589	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ_copy_2/mBaseHierarhy/TPoint.cpp.obj	d7831d8ae8da74b4
+17	2592	1762890255566196145	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ_copy_2/mPlaneHierarhy/TPlane.cpp.obj	c404b09a48790c18
+18	4458	1762869607500049585	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ_copy_2/mDrawingHierarhy/TLine.cpp.obj	b981c39ca3419d1d
+14	2830	1762890255563111154	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ_copy_2/main.cpp.obj	958f4cdb1d6b8ccf
+2830	3346	1762890258379781797	/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ copy 2/output/ExOOP.exe	9038ef919bc2dbd5
+21	4100	1762869607503803680	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ_copy_2/mTowerHierarhy/TTower.cpp.obj	9d2ac59461489ff7
+17	2590	1762890255566900656	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ_copy_2/mPlaneHierarhy/TMagicPlane.cpp.obj	1878422e81cf5e9e
+18	2591	1762890255567322429	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ_copy_2/mPlaneHierarhy/TBrokenPlane.cpp.obj	c56ee38096eab80c
+14	2640	1762870902236984472	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ_copy_2/mTowerHierarhy/TMagicTower.cpp.obj	41756682cd6b4b31
+18	2591	1762890255567715829	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ_copy_2/mPlaneHierarhy/TRepairedPlane.cpp.obj	780543624ea5547

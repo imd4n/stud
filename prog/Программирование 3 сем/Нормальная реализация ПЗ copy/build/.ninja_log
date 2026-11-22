@@ -1,0 +1,11 @@
+# ninja log v7
+1	270	1759316172719023127	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ/mBaseHierarhy/TLocation.cpp.obj	84d4f9df24406a67
+4	1376	1759737072817038092	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ/mBaseHierarhy/TPoint.cpp.obj	d0d5a87ae3600fbb
+3	1574	1759737072816511773	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ/main.cpp.obj	ce58b4e2fa9715e8
+1574	1925	1759737074387494963	/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/output/ExOOP.exe	476c9e7dc209c5e4
+2	647	1764534046842507345	build.ninja	e4ddb32153dc7088
+2	647	1760902491007872878	/Users/nikitak/Documents/Programming/Программирование 3 сем/Нормальная реализация ПЗ/build/cmake_install.cmake	e4ddb32153dc7088
+4	1393	1759737072817428914	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ/mCloudHierarhy/TCloud.cpp.obj	44a56ed3a101e5ad
+4	1377	1759737072817308375	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ/mPlaneHierarhy/TPlane.cpp.obj	4ff432d56c5ddb97
+3	332	1759316906964776753	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ/mTowerHierarhy/TTower.cpp.obj	31c0a89fa602b83c
+4	1376	1759737072817180754	CMakeFiles/ExOOP.dir/Users/nikitak/Documents/Programming/Программирование_3_сем/Нормальная_реализация_ПЗ/mBaseHierarhy/TCollision.cpp.obj	acbb64a326bf50a9
