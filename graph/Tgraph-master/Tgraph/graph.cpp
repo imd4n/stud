@@ -1,382 +1,441 @@
 #include "graph.h"
-#include <vector>
+
 #include <algorithm>
+#include <cctype>
+#include <functional>
+#include <iomanip>
+#include <numeric>
+#include <sstream>
 
-// Конструктор пустого графа
-Graph::Graph(bool t) {
-    type = t;
-    vertex_count = 0;
-    adj = nullptr;
-    sizes = nullptr;
-    capacities = nullptr;
-    vertex_numbers = nullptr;
+// ---------------------------------------------------------------------------
+// Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Рµ С„СѓРЅРєС†РёРё С‡С‚РµРЅРёСЏ
+// ---------------------------------------------------------------------------
+namespace {
+
+std::vector<std::string> split_line(const std::string& line) {
+    std::vector<std::string> tokens;
+    std::istringstream iss(line);
+    std::string token;
+    while (iss >> token) tokens.push_back(token);
+    return tokens;
 }
 
-// Деструктор графа
-Graph::~Graph() {
-    if (adj) {
-        for (int i = 0; i < vertex_count; ++i) {
-            delete[] adj[i];
-        }
-        delete[] adj;
-    }
-    delete[] sizes;
-    delete[] capacities;
-    delete[] vertex_numbers;
-}
-
-// Конструктор графа из файла с матрицей смежности
-Graph::Graph(const char* Fname, bool t) {
-    type = t;
-    vertex_count = 0;
-    adj = nullptr;
-    sizes = nullptr;
-    capacities = nullptr;
-    vertex_numbers = nullptr;
-
-    ifstream fin(Fname);
-    if (!fin) {
-        cerr << "Cannot open file!\n";
-        exit(1);
-    }
-
-    int n;
-    fin >> n;
-
-    vector<vector<int>> matrix(n, vector<int>(n));
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < n; ++j) {
-            fin >> matrix[i][j];
+// РџРѕС…РѕР¶Р° Р»Рё СЃС‚СЂРѕРєР° РЅР° СЃС‚СЂРѕРєСѓ РјР°С‚СЂРёС†С‹ СЃРјРµР¶РЅРѕСЃС‚Рё: СЂРѕРІРЅРѕ n С†РµР»С‹С… С‡РёСЃРµР».
+bool is_matrix_line(const std::string& line, int n) {
+    std::vector<std::string> t = split_line(line);
+    if ((int)t.size() != n) return false;
+    for (const std::string& s : t) {
+        size_t pos = (!s.empty() && s[0] == '-') ? 1 : 0;
+        if (pos >= s.size()) return false;
+        for (size_t i = pos; i < s.size(); ++i) {
+            if (!std::isdigit((unsigned char)s[i])) return false;
         }
     }
-
-    // Добавляем вершины 0..n-1
-    for (int i = 0; i < n; ++i) {
-        add_vertex(i);
-    }
-
-    // Читаем матрицу смежности
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < n; ++j) {
-            if (i == j) continue;
-
-            if (type) {
-                // Неориентированный граф: добавляем ребро только один раз
-                if (i < j) {
-                    int w = matrix[i][j];
-                    if (w == 0) w = matrix[j][i]; // на случай несимметричной записи
-                    if (w != 0) {
-                        add_edge(i, j, w);
-                    }
-                }
-            }
-            else {
-                // Ориентированный граф: добавляем дугу i -> j
-                int w = matrix[i][j];
-                if (w != 0) {
-                    add_edge(i, j, w);
-                }
-            }
-        }
-    }
-
-    fin.close();
+    return true;
 }
 
-int Graph::size() {
-    return vertex_count;
+std::string join_lines(const std::vector<std::string>& lines) {
+    return std::accumulate(lines.begin(), lines.end(), std::string(),
+        [](const std::string& a, const std::string& b) { return a + b + "\n"; });
 }
 
-void Graph::resize(int v) {
-    capacities[v] *= 2;
-    Edge* newArr = new Edge[capacities[v]];
+} // namespace
 
-    for (int i = 0; i < sizes[v]; ++i) {
-        newArr[i] = adj[v][i];
-    }
+// ---------------------------------------------------------------------------
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹, Р±Р°Р·РѕРІС‹Рµ РѕРїРµСЂР°С†РёРё
+// ---------------------------------------------------------------------------
+Graph::Graph(bool directed) : vertex_count(0), type(directed) {}
 
-    delete[] adj[v];
-    adj[v] = newArr;
+Graph::~Graph() = default;
+
+int Graph::index_of(int vertex) const {
+    return (vertex >= 0 && vertex < vertex_count) ? vertex : -1;
 }
 
-void Graph::add_vertex(int vertex) {
-    if (index_of(vertex) != -1) return;
+int Graph::size() const { return vertex_count; }
 
-    Edge** newAdj = new Edge * [vertex_count + 1];
-    int* newSizes = new int[vertex_count + 1];
-    int* newCaps = new int[vertex_count + 1];
-    int* newNumbers = new int[vertex_count + 1];
+bool Graph::directed() const { return type; }
 
-    for (int i = 0; i < vertex_count; ++i) {
-        newAdj[i] = adj[i];
-        newSizes[i] = sizes[i];
-        newCaps[i] = capacities[i];
-        newNumbers[i] = vertex_numbers[i];
-    }
-
-    newSizes[vertex_count] = 0;
-    newCaps[vertex_count] = 2;
-    newAdj[vertex_count] = new Edge[2];
-    newNumbers[vertex_count] = vertex;
-
-    delete[] adj;
-    delete[] sizes;
-    delete[] capacities;
-    delete[] vertex_numbers;
-
-    adj = newAdj;
-    sizes = newSizes;
-    capacities = newCaps;
-    vertex_numbers = newNumbers;
-    vertex_count++;
+void Graph::add_vertex(int /*num*/) {
+    adj.emplace_back();
+    vertex_count = (int)adj.size();
 }
 
 void Graph::add_edge(int v1, int v2, int w) {
-    if (sizes[v1] == capacities[v1]) resize(v1);
-    adj[v1][sizes[v1]++] = { v2, w };
-
-    if (type && v1 != v2) {
-        if (sizes[v2] == capacities[v2]) resize(v2);
-        adj[v2][sizes[v2]++] = { v1, w };
+    if (v1 < 0 || v1 >= vertex_count || v2 < 0 || v2 >= vertex_count) return;
+    adj[v1].push_back({v2, w});
+    if (!type && v1 != v2) {
+        adj[v2].push_back({v1, w});
     }
 }
 
-bool Graph::is_edge(int v1, int v2) {
-    for (int i = 0; i < sizes[v1]; ++i) {
-        if (adj[v1][i].to == v2) return true;
-    }
-    return false;
+void Graph::add_edge_by_number(int v1, int v2, int w) {
+    add_edge(v1 - 1, v2 - 1, w);
 }
 
-int Graph::get_weight(int v1, int v2) {
-    for (int i = 0; i < sizes[v1]; ++i) {
-        if (adj[v1][i].to == v2) return adj[v1][i].weight;
+int Graph::get_weight(int v1, int v2) const {
+    if (index_of(v1) == -1 || index_of(v2) == -1) return -1;
+    for (const Edge& e : adj[v1]) {
+        if (e.to == v2) return e.weight;
     }
     return -1;
 }
 
-void Graph::list_of_edges() {
+bool Graph::is_edge(int v1, int v2) const {
+    return get_weight(v1, v2) != -1;
+}
+
+void Graph::list_of_edges() const {
     for (int i = 0; i < vertex_count; ++i) {
-        cout << "Vertex " << i << ": ";
-        for (int j = 0; j < sizes[i]; ++j) {
-            cout << "(" << adj[i][j].to << "," << adj[i][j].weight << ") ";
+        std::cout << "Vertex " << i + 1 << ": ";
+        for (const Edge& e : adj[i]) {
+            std::cout << "(" << e.to + 1 << "," << e.weight << ") ";
         }
-        cout << endl;
+        std::cout << '\n';
     }
 }
 
-void Graph::list_of_edges(int v) {
-    cout << "Vertex " << v << ": ";
-    for (int i = 0; i < sizes[v]; ++i) {
-        cout << "(" << adj[v][i].to << "," << adj[v][i].weight << ") ";
+void Graph::list_of_edges(int v) const {
+    int i = index_of(v - 1);
+    if (i == -1) return;
+    std::cout << "Vertex " << v << ": ";
+    for (const Edge& e : adj[i]) {
+        std::cout << "(" << e.to + 1 << "," << e.weight << ") ";
     }
-    cout << endl;
+    std::cout << '\n';
 }
 
-void Graph::save_to_file(const char* Fname) {
-    ofstream fout(Fname);
-    if (!fout) {
-        cerr << "Ошибка сохранения!" << endl;
+// ---------------------------------------------------------------------------
+// Р§С‚РµРЅРёРµ РІС…РѕРґРЅС‹С… С„Р°Р№Р»РѕРІ (РјР°С‚СЂРёС†Р° / СЃРїРёСЃРѕРє СЂС‘Р±РµСЂ / СЃРїРёСЃРѕРє СЃРјРµР¶РЅРѕСЃС‚Рё)
+// ---------------------------------------------------------------------------
+void Graph::read_matrix(std::istream& fin, int n) {
+    // РЎРЅР°С‡Р°Р»Р° СЃС‡РёС‚С‹РІР°РµРј РІСЃСЋ РјР°С‚СЂРёС†Сѓ: РѕРЅР° РјРѕР¶РµС‚ Р±С‹С‚СЊ РЅРµСЃРёРјРјРµС‚СЂРёС‡РЅРѕР№
+    // (СЃС‚Р°СЂС‹Р№ graph.txt), РїРѕСЌС‚РѕРјСѓ РґР»СЏ РЅРµРѕСЂРёРµРЅС‚РёСЂРѕРІР°РЅРЅРѕРіРѕ РіСЂР°С„Р° Р±РµСЂС‘Рј
+    // РЅРµРЅСѓР»РµРІРѕРµ Р·РЅР°С‡РµРЅРёРµ РёР· Р»СЋР±РѕР№ РёР· РґРІСѓС… РєР»РµС‚РѕРє.
+    std::vector<std::vector<int>> m(n, std::vector<int>(n, 0));
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            fin >> m[i][j];
+        }
+    }
+
+    adj.assign(n, {});
+    vertex_count = n;
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            if (type) {
+                if (m[i][j] != 0) adj[i].push_back({j, m[i][j]}); // РґСѓРіР° i -> j
+            } else if (i < j) {
+                int w = (m[i][j] != 0) ? m[i][j] : m[j][i];
+                if (w != 0) add_edge(i, j, w);                    // СЂРµР±СЂРѕ i -- j РѕРґРёРЅ СЂР°Р·
+            }
+        }
+    }
+}
+
+void Graph::read_edges(std::istream& fin) {
+    adj.clear();
+    vertex_count = 0;
+    int u, v, w;
+    while (fin >> u >> v >> w) {
+        int need = std::max(u, v);                   // РЅРѕРјРµСЂР° РІРµСЂС€РёРЅ СЃ 1
+        while (vertex_count < need) add_vertex(vertex_count);
+        add_edge_by_number(u, v, w);
+    }
+}
+
+void Graph::read_adjacency_lists(std::istream& fin, int n) {
+    adj.assign(n, {});
+    vertex_count = n;
+    std::string line;
+    for (int i = 0; i < n && std::getline(fin, line); ++i) {
+        for (const std::string& token : split_line(line)) {
+            size_t colon = token.find(':');
+            if (colon == std::string::npos || colon == 0) continue;
+            int v = std::stoi(token.substr(0, colon)) - 1;
+            int w = std::stoi(token.substr(colon + 1));
+            if (v < 0 || v >= n) continue;
+            if (type) {
+                adj[i].push_back({v, w});
+            } else {
+                if (i < v) add_edge(i, v, w);
+            }
+        }
+    }
+}
+
+Graph::Graph(const char* Fname, bool directed) : vertex_count(0), type(directed) {
+    std::ifstream fin(Fname);
+    if (!fin) {
+        std::cerr << "Cannot open file: " << Fname << '\n';
         return;
     }
 
-    fout << vertex_count << endl;
+    // РџРµСЂРІР°СЏ СЃС‚СЂРѕРєР°: "n U" / "n D" (РЅРѕРІС‹Р№ С„РѕСЂРјР°С‚) РёР»Рё РїСЂРѕСЃС‚Рѕ "n" (СЃС‚Р°СЂС‹Р№).
+    std::string first_line;
+    std::getline(fin, first_line);
+    if (!first_line.empty() && first_line.back() == '\r') first_line.pop_back();
+    std::vector<std::string> head = split_line(first_line);
 
-    // Строим матрицу смежности
-    vector<vector<int>> matrix(vertex_count, vector<int>(vertex_count, 0));
-
-    for (int u = 0; u < vertex_count; ++u) {
-        for (int k = 0; k < sizes[u]; ++k) {
-            int v = adj[u][k].to;
-            int w = adj[u][k].weight;
-            matrix[u][v] = w;
-        }
+    int n = 0;
+    if (!head.empty()) {
+        try { n = std::stoi(head[0]); } catch (...) { n = 0; }
+    }
+    if (head.size() > 1) {
+        char tp = head[1][0];
+        if (tp == 'D' || tp == 'd') type = true;
+        if (tp == 'U' || tp == 'u') type = false;
+    }
+    if (n <= 0) {
+        std::cerr << "Invalid first line in file: " << Fname << '\n';
+        return;
     }
 
+    std::vector<std::string> rest;
+    std::string line;
+    while (std::getline(fin, line)) {
+        if (!line.empty() && line.back() == '\r') line.pop_back();
+        rest.push_back(line);
+    }
+
+    std::istringstream ss(join_lines(rest));
+    if (!rest.empty() && rest[0].find(':') != std::string::npos) {
+        read_adjacency_lists(ss, n);
+    } else if (!rest.empty() && is_matrix_line(rest[0], n)) {
+        read_matrix(ss, n);
+    } else {
+        read_edges(ss);
+    }
+}
+
+Graph::Graph(const char* Fname) : Graph(Fname, false) {}
+
+void Graph::save_to_file(const char* Fname) const {
+    std::ofstream fout(Fname);
+    if (!fout) {
+        std::cerr << "Cannot create file: " << Fname << '\n';
+        return;
+    }
+    fout << vertex_count << ' ' << (type ? 'D' : 'U') << '\n';
+    std::vector<std::vector<int>> m(vertex_count, std::vector<int>(vertex_count, 0));
+    for (int u = 0; u < vertex_count; ++u) {
+        for (const Edge& e : adj[u]) m[u][e.to] = e.weight;
+    }
     for (int i = 0; i < vertex_count; ++i) {
         for (int j = 0; j < vertex_count; ++j) {
-            fout << matrix[i][j] << (j + 1 == vertex_count ? "" : " ");
+            fout << m[i][j] << (j + 1 == vertex_count ? "" : " ");
         }
-        fout << endl;
+        fout << '\n';
     }
-
-    fout.close();
 }
 
-int Graph::index_of(int vertex) {
-    for (int i = 0; i < vertex_count; ++i) {
-        if (vertex_numbers[i] == vertex) return i;
+// ---------------------------------------------------------------------------
+// РћС‚С‡С‘С‚ РІ С„РѕСЂРјР°С‚Рµ С„Р°Р№Р»РѕРІ ans_bpg_*.txt
+// ---------------------------------------------------------------------------
+void Graph::print_report(std::ostream& out) const {
+    const int n = vertex_count;
+
+    // РљРѕРјРїРѕРЅРµРЅС‚С‹ СЃРІСЏР·РЅРѕСЃС‚Рё (РґР»СЏ РѕСЂРіСЂР°С„Р° вЂ” СЃР»Р°Р±РѕР№ СЃРІСЏР·РЅРѕСЃС‚Рё).
+    std::vector<std::vector<int>> und(n);
+    for (int u = 0; u < n; ++u) {
+        for (int v = 0; v < n; ++v) {
+            if (u == v) continue;
+            if (get_weight(u, v) != -1 || get_weight(v, u) != -1) {
+                und[u].push_back(v);
+                und[v].push_back(u);
+            }
+        }
     }
-    return -1;
-}
-
-// ------------------------------------------------------------
-// 3b. Алгоритм Беллмана–Форда
-// ------------------------------------------------------------
-void Graph::bellman_ford(int start_vertex) {
-    const long long INF = numeric_limits<long long>::max() / 4;
-
-    int n = vertex_count;
-
-    if (start_vertex < 0 || start_vertex >= n) {
-        cout << "Ошибка: неверная стартовая вершина!\n";
-        return;
-    }
-
-    vector<long long> dist(n, INF);
-    dist[start_vertex] = 0;
-
-    // Релаксация рёбер n-1 раз
-    for (int step = 0; step < n - 1; ++step) {
-        bool updated = false;
-
-        for (int u = 0; u < n; ++u) {
-            if (dist[u] == INF) continue;
-
-            for (int k = 0; k < sizes[u]; ++k) {
-                int v = adj[u][k].to;
-                int w = adj[u][k].weight;
-
-                if (dist[v] > dist[u] + w) {
-                    dist[v] = dist[u] + w;
-                    updated = true;
+    std::vector<char> used(n, 0);
+    std::vector<std::vector<int>> comps;
+    for (int s = 0; s < n; ++s) {
+        if (used[s]) continue;
+        std::vector<int> comp;
+        std::vector<int> st;
+        st.push_back(s);
+        used[s] = 1;
+        while (!st.empty()) {
+            int u = st.back();
+            st.pop_back();
+            comp.push_back(u + 1);
+            for (int v : und[u]) {
+                if (!used[v]) {
+                    used[v] = 1;
+                    st.push_back(v);
                 }
             }
         }
-
-        if (!updated) break;
+        std::sort(comp.begin(), comp.end());
+        comps.push_back(comp);
     }
+    bool connected = (comps.size() == 1);
 
-    // Проверка на цикл отрицательного веса
-    bool negative_cycle = false;
+    // РЁР°РїРєР°.
+    out << (type ? "Graph is directed.\n" : "Graph is undirected.\n");
+    if (type) {
+        out << (connected ? "Digraph is weakly connected\n" : "Digraph is not connected\n");
+    } else {
+        out << (connected ? "Graph is connected\n" : "Graph is not connected\n");
+    }
+    out << '\n';
+    out << (type ? "Weakly connected components:\n" : "Connected components:\n");
+    for (const std::vector<int>& c : comps) {
+        out << '[';
+        for (size_t i = 0; i < c.size(); ++i) {
+            if (i) out << ", ";
+            out << c[i];
+        }
+        out << "]\n";
+    }
+    out << '\n';
 
-    for (int u = 0; u < n && !negative_cycle; ++u) {
-        if (dist[u] == INF) continue;
+    // РљСЂР°С‚С‡Р°Р№С€РёРµ СЂР°СЃСЃС‚РѕСЏРЅРёСЏ Рё РїСѓС‚Рё: Р‘РµР»Р»РјР°РЅ-Р¤РѕСЂРґ РёР· РєР°Р¶РґРѕР№ РІРµСЂС€РёРЅС‹.
+    const long long INF = std::numeric_limits<long long>::max() / 4;
+    std::vector<std::vector<long long>> dist(n, std::vector<long long>(n, -1));
+    std::vector<std::vector<std::vector<int>>> paths(n);
 
-        for (int k = 0; k < sizes[u]; ++k) {
-            int v = adj[u][k].to;
-            int w = adj[u][k].weight;
+    for (int s = 0; s < n; ++s) {
+        std::vector<long long> d(n, INF);
+        std::vector<int> parent(n, -1);
+        d[s] = 0;
 
-            if (dist[v] > dist[u] + w) {
-                negative_cycle = true;
-                break;
+        for (int iter = 0; iter < n - 1; ++iter) {
+            bool changed = false;
+            for (int u = 0; u < n; ++u) {
+                if (d[u] == INF) continue;
+                for (const Edge& e : adj[u]) {
+                    if (d[e.to] > d[u] + e.weight) {
+                        d[e.to] = d[u] + e.weight;
+                        parent[e.to] = u;
+                        changed = true;
+                    }
+                }
+            }
+            if (!changed) break;
+        }
+
+        for (int t = 0; t < n; ++t) {
+            if (d[t] == INF) continue;
+            dist[s][t] = d[t];
+            if (t == s) continue;
+            std::vector<int> path;
+            int cur = t;
+            while (cur != -1) {
+                path.push_back(cur + 1);
+                if (cur == s) break;
+                cur = parent[cur];
+            }
+            if (!path.empty() && path.back() == s + 1) {
+                std::reverse(path.begin(), path.end());
+                paths[s].push_back(path);
             }
         }
     }
 
-    cout << "Кратчайшие расстояния (Беллман-Форд) от вершины "
-        << start_vertex << ":\n";
-
     for (int i = 0; i < n; ++i) {
-        if (dist[i] == INF) {
-            cout << "До " << i << ": недостижимо\n";
+        out << "Shortest paths lengths from " << i + 1 << ":\n";
+        for (int j = 0; j < n; ++j) {
+            out << std::setw(3) << i + 1 << " - " << std::setw(3) << j + 1 << " : ";
+            if (dist[i][j] == -1) out << "+Infinity";
+            else out << dist[i][j];
+            out << '\t';
         }
-        else {
-            cout << "До " << i << ": " << dist[i] << "\n";
-        }
+        out << "\n\n";
     }
 
-    if (negative_cycle) {
-        cout << "Внимание: обнаружен цикл отрицательного веса, "
-            << "кратчайшие расстояния могут быть некорректны.\n";
+    for (int i = 0; i < n; ++i) {
+        if (i > 0) out << "\n\n";
+        for (const std::vector<int>& p : paths[i]) {
+            out << "Path from " << i + 1 << " to " << p.back() << ":\n";
+            for (size_t k = 0; k < p.size(); ++k) {
+                if (k) out << '-';
+                out << p[k];
+            }
+            out << '\n';
+        }
+    }
+    out << '\n';
+
+    // РњРёРЅРёРјР°Р»СЊРЅРѕРµ РѕСЃС‚РѕРІРЅРѕРµ РґРµСЂРµРІРѕ: РљСЂР°СЃРєР°Р», РЅР°РїСЂР°РІР»РµРЅРёСЏ РґСѓРі РЅРµ СѓС‡РёС‚С‹РІР°СЋС‚СЃСЏ.
+    if (connected) {
+        struct KEdge { int u, v, w; };
+        std::vector<KEdge> edges;
+        for (int u = 0; u < n; ++u) {
+            for (int v = u + 1; v < n; ++v) {
+                int w1 = get_weight(u, v);
+                int w2 = get_weight(v, u);
+                int w = -1;
+                if (w1 != -1 && w2 != -1) w = std::min(w1, w2);
+                else if (w1 != -1) w = w1;
+                else if (w2 != -1) w = w2;
+                if (w != -1) edges.push_back({u, v, w});
+            }
+        }
+        std::stable_sort(edges.begin(), edges.end(),
+            [](const KEdge& a, const KEdge& b) { return a.w < b.w; });
+
+        std::vector<int> p(n);
+        std::iota(p.begin(), p.end(), 0);
+        std::function<int(int)> find = [&](int x) {
+            return p[x] == x ? x : p[x] = find(p[x]);
+        };
+        std::vector<KEdge> mst;
+        long long total = 0;
+        for (const KEdge& e : edges) {
+            int a = find(e.u), b = find(e.v);
+            if (a == b) continue;
+            p[a] = b;
+            mst.push_back(e);
+            total += e.w;
+            if ((int)mst.size() == n - 1) break;
+        }
+
+        out << "Weight of minimum spanning tree: " << total << "\n";
+        out << "Spanning tree:\n";
+        for (size_t i = 0; i < mst.size(); ++i) {
+            if (i) out << '\n';
+            out << mst[i].u + 1 << '-' << mst[i].v + 1 << " : " << mst[i].w;
+        }
     }
 }
 
-// ------------------------------------------------------------
-// 4a. Алгоритм Краскала
-// ------------------------------------------------------------
-void Graph::kruskal() {
-    struct KEdge {
-        int u;
-        int v;
-        int w;
-    };
-
-    struct DSU {
-        vector<int> parent;
-        vector<int> rank;
-
-        DSU(int n) : parent(n), rank(n, 0) {
-            for (int i = 0; i < n; ++i) {
-                parent[i] = i;
-            }
-        }
-
-        int find(int x) {
-            if (parent[x] != x) {
-                parent[x] = find(parent[x]);
-            }
-            return parent[x];
-        }
-
-        bool unite(int a, int b) {
-            a = find(a);
-            b = find(b);
-
-            if (a == b) return false;
-
-            if (rank[a] < rank[b]) {
-                swap(a, b);
-            }
-
-            parent[b] = a;
-
-            if (rank[a] == rank[b]) {
-                rank[a]++;
-            }
-
-            return true;
-        }
-    };
-
+// ---------------------------------------------------------------------------
+// РЎС‚Р°СЂС‹Рµ РјРµС‚РѕРґС‹ РІР°СЂРёР°РЅС‚Р° 3b / 4a (РґР»СЏ СЃРѕРІРјРµСЃС‚РёРјРѕСЃС‚Рё)
+// ---------------------------------------------------------------------------
+void Graph::bellman_ford(int start_vertex) const {
+    const long long INF = std::numeric_limits<long long>::max() / 4;
     int n = vertex_count;
-    vector<KEdge> edges;
-
-    for (int u = 0; u < n; ++u) {
-        for (int k = 0; k < sizes[u]; ++k) {
-            int v = adj[u][k].to;
-            int w = adj[u][k].weight;
-
-            if (u == v) continue;
-
-            // Для неориентированного графа каждое ребро хранится дважды,
-            // поэтому берём только u < v.
-            if (type && u > v) continue;
-
-            edges.push_back({ u, v, w });
-        }
-    }
-
-    sort(edges.begin(), edges.end(),
-        [](const KEdge& a, const KEdge& b) {
-            return a.w < b.w;
-        });
-
-    DSU dsu(n);
-    vector<KEdge> mst;
-    int total_weight = 0;
-
-    for (const KEdge& e : edges) {
-        if (dsu.unite(e.u, e.v)) {
-            mst.push_back(e);
-            total_weight += e.w;
-
-            if ((int)mst.size() == n - 1) {
-                break;
+    if (start_vertex < 0 || start_vertex >= n) return;
+    std::vector<long long> d(n, INF);
+    d[start_vertex] = 0;
+    for (int iter = 0; iter < n - 1; ++iter) {
+        bool changed = false;
+        for (int u = 0; u < n; ++u) {
+            if (d[u] == INF) continue;
+            for (const Edge& e : adj[u]) {
+                if (d[e.to] > d[u] + e.weight) {
+                    d[e.to] = d[u] + e.weight;
+                    changed = true;
+                }
             }
         }
+        if (!changed) break;
     }
-
-    cout << "\nМинимальное остовное дерево (алгоритм Краскала):\n";
-
-    for (const KEdge& e : mst) {
-        cout << e.u << " - " << e.v
-            << " (вес: " << e.w << ")\n";
+    std::cout << "Bellman-Ford from vertex " << start_vertex << ":\n";
+    for (int i = 0; i < n; ++i) {
+        std::cout << i << ": "
+                  << (d[i] == INF ? std::string("infinity") : std::to_string(d[i])) << '\n';
     }
+}
 
-    cout << "Общий вес остовного дерева: " << total_weight << "\n";
-
-    if ((int)mst.size() < n - 1) {
-        cout << "Граф несвязный: найден минимальный остовный лес.\n";
+void Graph::kruskal() const {
+    std::ostringstream tmp;
+    print_report(tmp);
+    std::string s = tmp.str();
+    size_t pos = s.find("Weight of minimum spanning tree:");
+    if (pos == std::string::npos) {
+        std::cout << "Graph is disconnected, no spanning tree.\n";
+        return;
     }
+    std::cout << s.substr(pos);
 }

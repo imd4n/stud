@@ -1,54 +1,55 @@
-﻿#include <iostream>
+﻿#include <fstream>
+#include <iostream>
+#include <string>
+
 #include "graph.h"
-using namespace std;
 
-int main() {
-    setlocale(LC_ALL, "");
+int main(int argc, char* argv[]) {
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(nullptr);
 
-    cout << "Создаем пустой неориентированный граф\n";
-    Graph g(true);
+    std::string input_file;
+    std::string output_file;
+    bool have_output = false;
 
-    cout << "Добавляем 4 вершины\n";
-    g.add_vertex(0);
-    g.add_vertex(1);
-    g.add_vertex(2);
-    g.add_vertex(3);
+    for (int i = 1; i < argc; ++i) {
+        std::string arg = argv[i];
+        if (arg == "-o") {
+            if (i + 1 < argc) {
+                output_file = argv[++i];
+                have_output = true;
+            }
+        } else if (!arg.empty() && arg[0] == '-') {
+            std::cerr << "Unknown option: " << arg << '\n';
+            return 1;
+        } else if (input_file.empty()) {
+            input_file = arg;
+        }
+    }
 
-    cout << "Добавляем ребра\n";
-    g.add_edge(0, 1, 5);
-    g.add_edge(1, 2, 3);
-    g.add_edge(1, 3, 2);
+    if (input_file.empty()) {
+        if (argc > 1) {
+            std::cerr << "Usage: Tgraph <input_file> [-o output_file]\n";
+            return 1;
+        }
+        std::cout << "Input file: ";
+        if (!(std::cin >> input_file)) return 1;
+    }
 
-    cout << "Список всех рёбер:\n";
-    g.list_of_edges();
+    // Тип графа берётся из файла ("U"/"D"); для старого файла без типа
+    // используется неориентированный граф по умолчанию.
+    Graph g(input_file.c_str(), false);
 
-    // 3b: Беллман-Форд
-    g.bellman_ford(0);
-
-    // 4a: Краскал
-    g.kruskal();
-
-    cout << "Проверяем наличие ребра 0->1: "
-        << g.is_edge(0, 1) << endl;
-
-    cout << "Вес ребра 1->2: "
-        << g.get_weight(1, 2) << endl;
-
-    cout << "\nСохраняем граф в файл graph_out.txt\n";
-    g.save_to_file("graph_out.txt");
-
-    cout << "\nСоздаем граф из файла graph.txt "
-        << "(матрица смежности, ориентированный)\n";
-
-    Graph g2("graph.txt", false);
-
-    g2.list_of_edges();
-
-    // Беллман-Форд для ориентированного графа
-    g2.bellman_ford(0);
-
-    // Краскал для орграфа без учёта направлений дуг
-    g2.kruskal();
-
+    if (have_output) {
+        // Бинарный режим: эталонные файлы используют LF, а не CRLF.
+        std::ofstream fout(output_file, std::ios::binary);
+        if (!fout) {
+            std::cerr << "Cannot create output file: " << output_file << '\n';
+            return 1;
+        }
+        g.print_report(fout);
+    } else {
+        g.print_report(std::cout);
+    }
     return 0;
 }

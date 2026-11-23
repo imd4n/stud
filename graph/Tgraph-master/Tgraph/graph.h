@@ -1,12 +1,13 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 
-#include <iostream>
 #include <fstream>
+#include <iostream>
 #include <limits>
-using namespace std;
+#include <string>
+#include <vector>
 
-// Структура ребра: вершина назначения и вес
+// Р РµР±СЂРѕ / РґСѓРіР°: to вЂ” РёРЅРґРµРєСЃ РєРѕРЅС†Р° (0..size-1), weight вЂ” РІРµСЃ.
 struct Edge {
     int to;
     int weight;
@@ -14,34 +15,40 @@ struct Edge {
 
 class Graph {
 private:
-    Edge** adj;          // массив списков смежности
-    int* sizes;          // количество рёбер для каждой вершины
-    int* capacities;     // ёмкость каждого списка
-    int vertex_count;    // количество вершин
-    bool type;           // true - неориентированный, false - ориентированный
-    int* vertex_numbers; // реальные номера вершин
+    std::vector<std::vector<Edge>> adj; // СЃРїРёСЃРєРё СЃРјРµР¶РЅРѕСЃС‚Рё
+    int vertex_count;                   // С‡РёСЃР»Рѕ РІРµСЂС€РёРЅ
+    bool type;                          // true вЂ” РѕСЂРіСЂР°С„, false вЂ” РЅРµРѕСЂРёРµРЅС‚РёСЂРѕРІР°РЅРЅС‹Р№ РіСЂР°С„
 
-    void resize(int v);       // увеличить список смежности
-    int index_of(int vertex); // возвращает индекс массива по номеру вершины
+    int index_of(int vertex) const;     // РїРѕРёСЃРє РІРµСЂС€РёРЅС‹ РїРѕ РµС‘ РЅРѕРјРµСЂСѓ
+    void read_matrix(std::istream& fin, int n);
+    void read_edges(std::istream& fin);
+    void read_adjacency_lists(std::istream& fin, int n);
 
 public:
-    Graph(bool type);                       // пустой граф
-    Graph(const char* Fname, bool type);    // граф из файла (матрица смежности)
-    ~Graph();                               // деструктор
+    Graph(bool directed);                       // РїСѓСЃС‚РѕР№ РіСЂР°С„
+    Graph(const char* Fname, bool directed);    // С‡С‚РµРЅРёРµ С„Р°Р№Р»Р° (РїРµСЂРІР°СЏ СЃС‚СЂРѕРєР°: "n U"/"n D" РёР»Рё РїСЂРѕСЃС‚Рѕ n)
+    explicit Graph(const char* Fname);          // РЅРѕРІС‹Р№ С„РѕСЂРјР°С‚: "n U"/"n D" + РјР°С‚СЂРёС†Р°/СЃРїРёСЃРєРё
+    ~Graph();
 
-    int size();                             // количество вершин
-    int get_weight(int v1, int v2);         // вес ребра
-    bool is_edge(int v1, int v2);           // проверка наличия ребра
+    int size() const;                           // РєРѕР»РёС‡РµСЃС‚РІРѕ РІРµСЂС€РёРЅ
+    bool directed() const;                      // С‚РёРї РіСЂР°С„Р°
+    int get_weight(int v1, int v2) const;       // РІРµСЃ СЂРµР±СЂР°/РґСѓРіРё (РїРѕ РёРЅРґРµРєСЃР°Рј 0..n-1)
+    bool is_edge(int v1, int v2) const;         // РµСЃС‚СЊ Р»Рё СЂРµР±СЂРѕ/РґСѓРіР°
 
-    void add_vertex(int num);               // добавление вершины
-    void add_edge(int v1, int v2, int w);   // добавление ребра
+    void add_vertex(int num);                   // РґРѕР±Р°РІРёС‚СЊ РІРµСЂС€РёРЅСѓ СЃ РІРЅРµС€РЅРёРј РЅРѕРјРµСЂРѕРј num
+    void add_edge(int v1, int v2, int w);       // РґРѕР±Р°РІРёС‚СЊ СЂРµР±СЂРѕ/РґСѓРіСѓ (РїРѕ РёРЅРґРµРєСЃР°Рј)
+    void add_edge_by_number(int v1, int v2, int w); // РґРѕР±Р°РІРёС‚СЊ СЂРµР±СЂРѕ РїРѕ РІРЅРµС€РЅРёРј РЅРѕРјРµСЂР°Рј (1..n)
 
-    void list_of_edges();                   // вывод всех рёбер
-    void list_of_edges(int v);              // вывод рёбер одной вершины
-    void save_to_file(const char* Fname);   // сохранение графа в файл
+    void list_of_edges() const;                 // РІСЃРµ СЂС‘Р±СЂР°
+    void list_of_edges(int v) const;            // СЂС‘Р±СЂР°, РёРЅС†РёРґРµРЅС‚РЅС‹Рµ РІРµСЂС€РёРЅРµ v
+    void save_to_file(const char* Fname) const; // СЃРѕС…СЂР°РЅРёС‚СЊ РІ РЅРѕРІРѕРј С„РѕСЂРјР°С‚Рµ
 
-    void bellman_ford(int start_vertex);    // 3b
-    void kruskal();                         // 4a
+    // --- ANALYSIS / Р’Р«Р’РћР” Р’ Р¤РћР РњРђРўР• ans_bpg_*.txt ---
+    void print_report(std::ostream& out) const;
+
+    // СЃС‚Р°СЂС‹Рµ РјРµС‚РѕРґС‹ РІР°СЂРёР°РЅС‚Р° 1c 2a 3b 4a (РѕСЃС‚Р°РІР»РµРЅС‹ РґР»СЏ СЃРѕРІРјРµСЃС‚РёРјРѕСЃС‚Рё)
+    void bellman_ford(int start_vertex) const;
+    void kruskal() const;
 };
 
 #endif
