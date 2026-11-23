@@ -8,7 +8,6 @@
  * Comment(s)    : Простой сайдскроллер. Самолёт падает и «прыгает» *
  *                 над башнями, которые едут справа налево.        *
  *                 Считаем удачные перелёты, а не столкновения.    *
- *                 Кодовая база: "Игра", механика: planeexamp.     *
  ******************************************************************/
 
 #include <chrono>
@@ -20,10 +19,13 @@
 
 #include <windows.h>
 
-#include "./mPlaneHierarhy/TBrokenPlane.h"
-#include "./mPlaneHierarhy/TPlane.h"
-#include "./mTowerHierarhy/TMagicTower.h"
-#include "./mTowerHierarhy/TTower.h"
+#include "./objects/StarBonus.h"
+#include "./objects/Rockets.h"
+#include "./planes/BrokenPlane.h"
+#include "./planes/MagicPlane.h"
+#include "./planes/Plane.h"
+#include "./towers/MagicTower.h"
+#include "./towers/Tower.h"
 #include "gameSettings.h"
 
 #define KEY_DOWN(vk_code) ((GetAsyncKeyState(vk_code) & 0x8000) ? 1 : 0)
@@ -31,7 +33,7 @@
 HDC hdc; // глобальный контекст (переключается на буферный)
 
 // --------------------- НАСТРОЙКИ ПОЛЁТА ---------------------
-// Физика позаимствована у flappy-механики из planeexamp.
+// Физика прыжка: гравитация плюс импульс по нажатию.
 const int FLAP_START_Y = 300;   // стартовая высота самолёта
 const int SCROLL_SPEED = 5;     // скорость движения башен влево
 // Зазор считаем в ширинах дома: от одного до четырёх домов подряд.
@@ -42,10 +44,25 @@ const double GRAVITY = 0.55;
 const double FLAP_IMPULSE = -9.0;
 const double MAX_FALL_SPEED = 11.0;
 
+// Бонусы
+const int STAR_SPAWN_MS = 5000;   // как часто падает звёздочка
+const int ROCKET_SPAWN_MS = 7000; // как часто появляется ракета
+const int ROCKET_SPEED = 3 * SCROLL_SPEED; // ракета в 3 раза быстрее нас
+const int STAR_SPEED = ROCKET_SPEED; // звёздочка летит так же, но не убивает
+
 // --------------------- ГЛОБАЛЬНОЕ СОСТОЯНИЕ ---------------------
 bool gameRunning = true;
 int flightsOver = 0; // сколько раз пролетели сверху
 Plane *wreck = nullptr; // сломанный самолёт, появляется после удара
+
+StarBonus *star = nullptr;        // бонус-звёздочка
+Rockets *rocket = nullptr;        // вражеская ракета
+MagicPlane *magicPlane = nullptr; // спрайт на время бессмертия
+int frameCounter = 0;             // для мерцания магического самолёта
+
+auto starSpawnTime = std::chrono::steady_clock::now();
+auto rocketSpawnTime = std::chrono::steady_clock::now();
+std::chrono::steady_clock::time_point magicEndTime; // пока не активно
 
 // --------------------- САМОЛЁТ С «ПРЫЖКОМ» ---------------------
 // Наследник спрайта из базовой кодовой базы: рисование и хитбокс
@@ -66,7 +83,7 @@ public:
     velocityY = FLAP_IMPULSE;
   }
 
-  void update(int groundY) {
+  void update(int groundY, bool invincible) {
     if (crashed)
       return;
 
@@ -91,7 +108,12 @@ public:
       newY = groundY - halfOnScreen;
       setY(newY);
       preciseY = newY;
-      crashed = true;
+      // В режиме бессмертия можно даже приземлиться и взлететь снова.
+      if (!invincible) {
+        crashed = true;
+      } else {
+        velocityY = 0.0;
+      }
       return;
     }
 
@@ -186,6 +208,20 @@ HitBox towerHitBox(Tower *t) {
   return {t->getX(), t->getY() - bodyHeight, t->getX() + bodyWidth, t->getY()};
 }
 
+// Звёздочка рисуется ромбом вокруг своей точки, а геттеры базового класса
+// считают хитбокс от неё вправо — поэтому задаём его здесь по рисунку.
+HitBox starHitBox(StarBonus *s) {
+  return {s->getX() - 15, s->getY() - 15, s->getX() + 15, s->getY() + 15};
+}
+
+// Спрайт ракеты повёрнут горизонтально, поэтому и хитбокс берём по нему.
+HitBox rocketHitBox(Rockets *r) {
+  const int centerX = r->getX() + r->getWidth() / 2;
+  const int centerY = r->getY() + r->getHeight() / 2;
+  return {centerX - r->getHeight() / 2, centerY - r->getWidth() / 2,
+          centerX + r->getHeight() / 2, centerY + r->getWidth() / 2};
+}
+
 // Поворачиваем спрайт на 90° по часовой стрелке: нос самолёта смотрит
 // вправо, в сторону полёта. Сами спрайты не трогаем — только матрица GDI.
 void drawRotated(Plane *obj) {
@@ -213,8 +249,35 @@ void drawRotated(Plane *obj) {
   SetGraphicsMode(hdc, oldMode);
 }
 
+// Ракета в базовом классе нарисована вертикальным прямоугольником, а летит
+// она горизонтально. Поворачиваем её матрицей GDI, чтобы не выглядела боком.
+void drawRocket(Rockets *r) {
+  const int centerX = r->getX() + r->getWidth() / 2;
+  const int centerY = r->getY() + r->getHeight() / 2;
+
+  int oldMode = GetGraphicsMode(hdc);
+  SetGraphicsMode(hdc, GM_ADVANCED);
+
+  XFORM oldForm;
+  GetWorldTransform(hdc, &oldForm);
+
+  XFORM rotate = {};
+  rotate.eM11 = 0.0f;
+  rotate.eM12 = 1.0f;
+  rotate.eM21 = -1.0f;
+  rotate.eM22 = 0.0f;
+  rotate.eDx = static_cast<float>(centerX + centerY);
+  rotate.eDy = static_cast<float>(centerY - centerX);
+  SetWorldTransform(hdc, &rotate);
+
+  r->show();
+
+  SetWorldTransform(hdc, &oldForm);
+  SetGraphicsMode(hdc, oldMode);
+}
+
 // --------------------- HUD ---------------------
-void drawHUD(HDC context, int flights, bool crashed) {
+void drawHUD(HDC context, int flights, bool crashed, bool magic) {
   SetBkMode(context, TRANSPARENT);
   SetTextColor(context, RGB(255, 255, 255));
 
@@ -222,9 +285,14 @@ void drawHUD(HDC context, int flights, bool crashed) {
   sprintf(buf, "FLIGHTS OVER: %d", flights);
   TextOut(context, 10, 10, buf, strlen(buf));
 
+  if (magic) {
+    sprintf(buf, "MAGIC! x2 POINTS - IMMORTAL");
+    TextOut(context, 10, 40, buf, strlen(buf));
+  }
+
   if (crashed) {
     sprintf(buf, "CRASHED - ESC TO EXIT");
-    TextOut(context, 10, 40, buf, strlen(buf));
+    TextOut(context, 10, 70, buf, strlen(buf));
   }
 }
 
@@ -310,6 +378,7 @@ int main() {
 
   // --------------------- ИНИЦИАЛИЗАЦИЯ ИГРЫ ---------------------
   FlappyPlane *bird = new FlappyPlane(planeX0, FLAP_START_Y);
+  magicPlane = new MagicPlane(0, 0); // рисуем только во время бессмертия
   initializeTowers();
 
   bool prevFlapDown = false;
@@ -339,10 +408,14 @@ int main() {
 
     if (elapsed >= frameDuration) {
       lastTime = now;
+      frameCounter++;
 
       // Переключаем глобальный hdc на буфер и копируем статический фон.
       hdc = hdcFrame;
       BitBlt(hdcFrame, 0, 0, bufW, bufH, hdcBack, 0, 0, SRCCOPY);
+
+      // Магия держится до истечения таймера; в этот период мы неуязвимы.
+      const bool magicActive = now < magicEndTime;
 
       // ---------- УПРАВЛЕНИЕ: прыжок по нажатию ----------
       bool flapDown = KEY_DOWN(VK_SPACE) || KEY_DOWN(VK_UP) || KEY_DOWN('W');
@@ -352,26 +425,74 @@ int main() {
 
       // ---------- ДВИЖЕНИЕ ----------
       if (!bird->isCrashed()) {
-        bird->update(playAreaBottom);
+        bird->update(playAreaBottom, magicActive);
         const HitBox birdBox = planeHitBox(bird);
 
+        // Звёздочка вылетает справа и летит на нас, как ракета, только
+        // при встрече не убивает, а включает бессмертие.
+        auto starElapsed = std::chrono::duration_cast<std::chrono::milliseconds>(
+                               now - starSpawnTime)
+                               .count();
+        if (star == nullptr && starElapsed >= STAR_SPAWN_MS) {
+          int y = playAreaTop + 40 +
+                  rand() % (playAreaBottom / 2 - 80);
+          star = new StarBonus(playAreaRight + 10, y);
+          starSpawnTime = now;
+        }
+        if (star) {
+          star->setX(star->getX() - STAR_SPEED);
+          if (starHitBox(star).right < playAreaLeft) {
+            delete star;
+            star = nullptr;
+          } else if (intersect(birdBox, starHitBox(star))) {
+            delete star;
+            star = nullptr;
+            magicEndTime = now + std::chrono::milliseconds(MAGIC_DURATION_MS);
+          }
+        }
+
+        // Ракета появляется справа в верхней половине окна и летит на нас —
+        // справа налево, в 3 раза быстрее движения домов.
+        auto rocketElapsed =
+            std::chrono::duration_cast<std::chrono::milliseconds>(
+                now - rocketSpawnTime)
+                .count();
+        if (rocket == nullptr && rocketElapsed >= ROCKET_SPAWN_MS) {
+          int y = playAreaTop + 40 +
+                  rand() % (playAreaBottom / 2 - 80);
+          rocket = new Rockets(playAreaRight + 10, y);
+          rocketSpawnTime = now;
+        }
+        if (rocket) {
+          rocket->setX(rocket->getX() - ROCKET_SPEED);
+          if (rocket->getX() + rocket->getWidth() < playAreaLeft) {
+            delete rocket;
+            rocket = nullptr;
+          } else if (!magicActive && intersect(birdBox, rocketHitBox(rocket))) {
+            bird->crash();
+          }
+        }
+
         for (int i = 0; i < TOWERS_NUM; i++) {
-          // Башни едут справа налево (не сверху вниз, как в старой игре).
+          // Башни едут справа налево.
           towers[i]->setX(towers[i]->getX() - SCROLL_SPEED);
 
           const HitBox towerBox = towerHitBox(towers[i]);
 
-          if (towerBox.right < playAreaLeft)
+          if (towerBox.right < playAreaLeft) {
             recycleTower(i);
-
-          // Пролетели сверху: башня целиком осталась позади самолёта.
-          if (!towerScored[i] && towerBox.right < birdBox.left) {
-            towerScored[i] = true;
-            flightsOver++;
+            // Новый дом появился справа — старый хитбокс больше недействителен.
+            continue;
           }
 
-          // Врезались — залёт закончен.
-          if (intersect(birdBox, towerBox))
+          // Пролетели сверху: в магии каждый дом даёт двойные очки.
+          if (!towerScored[i] && towerBox.right < birdBox.left) {
+            towerScored[i] = true;
+            flightsOver += magicActive ? 2 : 1;
+          }
+
+          // Врезались — залёт закончен (в магии башни не страшны).
+          if (!magicActive && intersect(birdBox, towerBox))
             bird->crash();
         }
       }
@@ -384,11 +505,28 @@ int main() {
       for (int i = 0; i < TOWERS_NUM; i++)
         towers[i]->show();
 
-      if (wreck)
+      if (star)
+        star->show();
+      if (rocket)
+        drawRocket(rocket);
+
+      if (wreck) {
         drawRotated(wreck);
-      else
+      } else if (magicActive) {
+        // Магический самолёт мигает: рисуем его через кадр.
+        if ((frameCounter / 5) % 2 == 0) {
+          magicPlane->setX(bird->getX());
+          // Совмещаем центр вращения магического спрайта с обычным.
+          magicPlane->setY(bird->getY() + bird->getHeight() / 2 -
+                           magicPlane->getHeight() / 2);
+          drawRotated(magicPlane);
+        }
+      } else {
         drawRotated(bird);
-      drawHUD(hdcFrame, flightsOver, bird->isCrashed());
+      }
+
+      drawHUD(hdcFrame, flightsOver, bird->isCrashed(),
+              magicActive && !bird->isCrashed());
 
       hdc = hdcScreen;
       BitBlt(hdcScreen, 0, 0, bufW, bufH, hdcFrame, 0, 0, SRCCOPY);
@@ -401,6 +539,9 @@ int main() {
   // --------------------- ОСВОБОЖДЕНИЕ РЕСУРСОВ ---------------------
   delete bird;
   delete wreck;
+  delete star;
+  delete rocket;
+  delete magicPlane;
   for (int i = 0; i < TOWERS_NUM; i++)
     delete towers[i];
 

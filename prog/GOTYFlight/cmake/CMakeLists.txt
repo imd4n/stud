@@ -1,35 +1,33 @@
 cmake_minimum_required(VERSION 3.20)
 project(GOTYFlight CXX)
 
-
-# Добавление исполняемого файла
+# Папки с заголовками
 include_directories(${PROJECT_NAME}
-    ../mBaseHierarhy # Базовая иерархия
-    ../mDrawingHierarhy # Элементы рисования
+    ../base
+    ../objects
+    ../planes
+    ../towers
 )
 
 add_executable(${PROJECT_NAME}
     # Основной файл программы
     ../main.cpp
 
-    # Базовые класссы
-    ../mBaseHierarhy/TLocation.cpp
-    ../mBaseHierarhy/TPoint.cpp
+    # Базовые классы
+    ../base/Location.cpp
+    ../base/Point.cpp
 
-    # Иерархия 1
-    ../mPlaneHierarhy/TPlane.cpp
-    ../mPlaneHierarhy/TMagicPlane.cpp
-    ../mPlaneHierarhy/TBrokenPlane.cpp
-    ../mPlaneHierarhy/TRepairedPlane.cpp
+    # Самолёты
+    ../planes/Plane.cpp
+    ../planes/MagicPlane.cpp
+    ../planes/BrokenPlane.cpp
 
-    ../mObjects/TRepairZone.cpp
-    ../mObjects/TRockets.cpp
-    ../mObjects/TRocketsFill.cpp
-    
-    # Иерархия 2
-    ../mTowerHierarhy/TTower.cpp
-    ../mTowerHierarhy/TMagicTower.cpp
+    # Объекты
+    ../objects/Rockets.cpp
 
+    # Башни
+    ../towers/Tower.cpp
+    ../towers/MagicTower.cpp
 )
 
 # Установка выходной директории

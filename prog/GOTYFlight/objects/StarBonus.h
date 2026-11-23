@@ -1,5 +1,5 @@
 #include <windows.h>
-#include <TPoint.h>
+#include "Point.h"
 
 extern HDC hdc;
 

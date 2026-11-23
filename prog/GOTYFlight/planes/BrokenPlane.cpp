@@ -1,4 +1,4 @@
-#include "TBrokenPlane.h"
+#include "BrokenPlane.h"
 #include <wingdi.h>
 
 extern HDC hdc;
@@ -185,8 +185,6 @@ BrokenPlane::BrokenPlane(int _x, int _y) : Plane(_x, _y) {
   setWidth(120);
   setCollisionX(-70);
   setCollisionY(0);
-
-  ID = 3;
 }
 
 BrokenPlane::~BrokenPlane() {}

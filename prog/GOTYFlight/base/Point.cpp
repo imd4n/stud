@@ -1,4 +1,4 @@
-#include "TPoint.h"
+#include "Point.h"
 // Реализация методов в классе point
 #include <windows.h>
 extern HDC hdc;

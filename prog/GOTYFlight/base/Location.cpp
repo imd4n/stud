@@ -1,4 +1,4 @@
-#include "TLocation.h"
+#include "Location.h"
 
 // Конструктор
 Location::Location(int _x, int _y) {

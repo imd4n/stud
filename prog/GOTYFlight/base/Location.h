@@ -1,5 +1,5 @@
-#ifndef TLOCATION_H
-#define TLOCATION_H
+#ifndef LOCATION_H
+#define LOCATION_H
 
 class Location
 {

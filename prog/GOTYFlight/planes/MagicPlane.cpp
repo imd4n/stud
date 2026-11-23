@@ -1,4 +1,4 @@
-#include "TMagicPlane.h"
+#include "MagicPlane.h"
 #include <wingdi.h>
 
 extern HDC hdc;
@@ -159,14 +159,11 @@ void MagicPlane::hvost(bool f) {
   DeleteObject(thickPen);
 }
 
-MagicPlane::MagicPlane(int _x, int _y) : AttackPlane(_x, _y) {
+MagicPlane::MagicPlane(int _x, int _y) : Plane(_x, _y) {
   setHeight(175);
   setWidth(175);
   setCollisionX(-85);
   setCollisionY(-25);
-
-  ID = 2;
-
 }
 
 MagicPlane::~MagicPlane() {}

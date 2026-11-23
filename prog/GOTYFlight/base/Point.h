@@ -1,8 +1,8 @@
-#ifndef TPOINT_H
-#define TPOINT_H
+#ifndef POINT_H
+#define POINT_H
 
 // Подключили библиотеку для создания потомка от нее
-#include "TLocation.h"
+#include "Location.h"
 #include <winsock.h>
 
 // Потомок "точка"

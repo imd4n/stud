@@ -1,7 +1,7 @@
-#ifndef TMAGICTOWER_H
-#define TMAGICTOWER_H
+#ifndef MAGICTOWER_H
+#define MAGICTOWER_H
 
-#include "TTower.h"
+#include "Tower.h"
 
 class MagicTower : public Tower {
 private:

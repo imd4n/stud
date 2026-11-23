@@ -1,26 +1,30 @@
-#ifndef TMAGICPLANE_H
-#define TMAGICPLANE_H
+#ifndef BROKENPLANE_H
+#define BROKENPLANE_H
 
-#include "TPlane.h"
+#include "Plane.h"
 
-// Наследуемся от самолета, чтобы сделать волшебный самолет
-// Он просто имеет другую картинку)
-class MagicPlane:public AttackPlane {
+// Сломанный самолёт: показывается после столкновения.
+class BrokenPlane : public Plane {
 private:
 public:
     virtual void fuselage(bool f) override;
     virtual void wings(bool f) override;
     virtual void hvost(bool f) override; 
 
+
     // Конструктор класса, для себя определяет его местоположение
-    MagicPlane(int _x = 0, int _y = 0);
+    BrokenPlane(int _x = 0, int _y = 0);
     // Деструктор класса
-    virtual ~MagicPlane();
+    virtual ~BrokenPlane();
 
     // Показать/скрыть обьект
 
     // Сеттеры
     /* Представим, что они тут есть */
+
+    // Геттеры
+    //int getWidth(); 
+    //int getHeight();
 };
 
 #endif

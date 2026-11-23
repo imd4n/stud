@@ -1,31 +1,26 @@
-#include "TRockets.h"
+#include "Rockets.h"
 
 extern HDC hdc;
 
 Rockets::Rockets(int _x, int _y) : Point(_x, _y) {
   collisionX = 0;
   collisionY = 0;
-  height = 20;
   width = 10;
-
-  centerX = _x;
-  centerY = _y;
+  height = 20;
 }
 
 void Rockets::show() {
-  Visible = true;
-  HBRUSH background = CreateSolidBrush(RGB(255, 255, 255));
+  HBRUSH brush = CreateSolidBrush(RGB(255, 255, 255));
   RECT rect = {x, y, x + width, y + height};
-  FillRect(hdc, &rect, background);
-  DeleteObject(background);
+  FillRect(hdc, &rect, brush);
+  DeleteObject(brush);
 }
 
 void Rockets::hide() {
-  Visible = false;
-  HBRUSH background = CreateSolidBrush(RGB(0, 0, 0));
+  HBRUSH brush = CreateSolidBrush(RGB(0, 0, 0));
   RECT rect = {x, y, x + width, y + height};
-  FillRect(hdc, &rect, background);
-  DeleteObject(background);
+  FillRect(hdc, &rect, brush);
+  DeleteObject(brush);
 }
 
 int Rockets::getWidth() { return width; }
